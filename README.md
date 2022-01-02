@@ -1,5 +1,5 @@
 This is my second Bot project
-It has several commands such as /echo, /start
+It has several commands such as /echo, /start, and /caps
 It would react to message such as "Happy New Year" and "Carlson"
 
 I enjoy coding this bot a lot, I learned the use of API and telegrambot functions
