@@ -11,12 +11,12 @@ This could help me refreshing my memory when I'm accessing the code.
   -Fixed minor mistakes
 
 Bot Functions:
-  /start: startup
-  /echo: repeats your inputs
-  /caps: capitalize your inputs
-  /otp: send an One Time Passcode to your email
-      how to use: /otp (space) (your email address)
-  /checkotp: to check your otp
-      if correct: Login Success
-      if wrong: Wrong Password
-      if no input: Invalid Password
+  /start: startup 
+  /echo: repeats your inputs  
+  /caps: capitalize your inputs 
+  /otp: send an One Time Passcode to your email 
+      how to use: /otp (space) (your email address) 
+  /checkotp: to check your otp  
+      if correct: Login Success 
+      if wrong: Wrong Password  
+      if no input: Invalid Password 
