@@ -7,7 +7,9 @@ In the next patch/update, I'll add comment to each line of code.
 This could help me refreshing my memory when I'm accessing the code.
 
 Update (7th Jan)
+
   -Finished OTP projects
+  
   -Fixed minor mistakes
 
 Bot Functions:
