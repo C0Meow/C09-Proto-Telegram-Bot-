@@ -55,8 +55,6 @@ def talking(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=update.effective_chat.id, text="Happy New Year! I wish you have a great 2022!")
     elif update.message.text == "Carlson":
         context.bot.send_message(chat_id=update.effective_chat.id, text="He is the creator of C09 Bot!")
-    elif update.message.text == "Marvis":
-        context.bot.send_message(chat_id=update.effective_chat.id, text="Best Girl Friend!")
     elif update.message.text == "How are you":
         context.bot.send_message(chat_id=update.effective_chat.id, text="Im feeling great!")
     elif update.message.text == "Secret":
