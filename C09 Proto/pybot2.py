@@ -1,6 +1,8 @@
 import os
+import random
 import logging
 import telegram
+from twilio.rest import Client
 from telegram.ext import Updater
 from telegram import Update
 from telegram.ext import CallbackContext
@@ -30,6 +32,23 @@ def echo(update: Update, context: CallbackContext):
 def caps(update: Update, context: CallbackContext):
     text_caps = ' '.join(context.args).upper()
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_caps)
+
+def otp(update: Update, context: CallbackContext):
+    global otpc
+    otpc = random.randint(100000,999999)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=otpc)
+    context.bot.send_message(chat_id=update.effective_chat.id, text="A OTP has been sent to you, please enter the 6 digit code")
+
+def checkotp(update: Update, context: CallbackContext):
+    try:
+        if int(update.message.text[10:]) == otpc:
+            context.bot.send_message(chat_id=update.effective_chat.id, text="Login Success")
+        else:
+            context.bot.send_message(chat_id=update.effective_chat.id, text="Wrong Passcode")
+    except:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Invalid Passcode")
+
+    
 
 def talking(update: Update, context: CallbackContext):
     if update.message.text == "Happy New Year":
@@ -66,9 +85,16 @@ dispatcher.add_handler(echo_handler)
 caps_handler = CommandHandler('caps', caps)
 dispatcher.add_handler(caps_handler)
 
+otp_handler = CommandHandler('otp', otp)
+dispatcher.add_handler(otp_handler)
+
+checkotp_handler = CommandHandler('checkotp', checkotp)
+dispatcher.add_handler(checkotp_handler)
+
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 updater.start_polling()
+
 
 unknown_handler = MessageHandler(Filters.command, unknown)
 dispatcher.add_handler(unknown_handler)
