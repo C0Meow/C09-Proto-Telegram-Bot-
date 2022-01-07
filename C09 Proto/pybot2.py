@@ -2,7 +2,7 @@ import os
 import random
 import logging
 import telegram
-from twilio.rest import Client
+import smtplib
 from telegram.ext import Updater
 from telegram import Update
 from telegram.ext import CallbackContext
@@ -12,11 +12,11 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent
 from dotenv import load_dotenv
 
 load_dotenv()
-bot = telegram.Bot(token=str(os.environ.get('TOKEN')))
+bot = telegram.Bot(token=str(os.environ.get("TOKEN")))
 print(bot.get_me())
 updates = bot.get_updates()
 
-updater = Updater(token=str(os.environ.get('TOKEN')), use_context=True)
+updater = Updater(token=str(os.environ.get("TOKEN")), use_context=True)
 dispatcher = updater.dispatcher
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -36,8 +36,12 @@ def caps(update: Update, context: CallbackContext):
 def otp(update: Update, context: CallbackContext):
     global otpc
     otpc = random.randint(100000,999999)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=otpc)
-    context.bot.send_message(chat_id=update.effective_chat.id, text="A OTP has been sent to you, please enter the 6 digit code")
+    useremailad = update.message.text[5:]
+    context.bot.send_message(chat_id=update.effective_chat.id, text="A OTP has been sent to your email, please enter the 6 digit code")
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login('pybotc09telegram@gmail.com', str(os.environ.get("gmailpw")))
+    server.sendmail('pybotc09telegram@gmail.com' , useremailad, str(otpc))
 
 def checkotp(update: Update, context: CallbackContext):
     try:
@@ -96,4 +100,3 @@ updater.start_polling()
 
 unknown_handler = MessageHandler(Filters.command, unknown)
 dispatcher.add_handler(unknown_handler)
-
