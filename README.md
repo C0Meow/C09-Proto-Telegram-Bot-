@@ -6,7 +6,7 @@ I enjoy coding this bot a lot, I learned the use of API and telegrambot function
 In the next patch/update, I'll add comment to each line of code.
 This could help me refreshing my memory when I'm accessing the code.
 
-7th Jan(Update)
+Update (7th Jan)
   -Finished OTP projects
   -Fixed minor mistakes
 
